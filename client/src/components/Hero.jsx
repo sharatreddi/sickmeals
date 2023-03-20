@@ -27,7 +27,7 @@ useEffect(() => {
 }, []);
 
 
-
+  //This is happening (tick)-------------------------
   const submitDisease = ()=>{
     Axios.post("http://localhost:3001/insert",{
       diseasename : disease,
@@ -35,7 +35,9 @@ useEffect(() => {
       alert("successful reading")
     })
   }
+  //This is happening (tick)-------------------------
 
+  // takes the input and sets it to the disease name then goes to submitDisease
   function handleChange(event){
     const text = event.target.value 
     setDisease(text)
