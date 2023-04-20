@@ -10,15 +10,15 @@ function Hero(){
 
   const [disease, setDisease] = useState("");
   const [diseaseData, setDiseaseData] = useState([]);
-  // console.log(diseaseData)
-
+  //console.log(diseaseData)
+  console.log(disease); 
   // const [dataa] = diseaseData;
   // console.log(dataa.dis_description);
 
 useEffect(() => {
-  Axios.get("http://localhost:3001/get")
+  Axios.get("http://localhost:3001/insert")
     .then((response) => {
-      setDiseaseData(response.data[0]);
+      setDiseaseData(response.data.data[0]);
        console.log(diseaseData)
     })
     .catch((error) => {
@@ -31,7 +31,10 @@ useEffect(() => {
   const submitDisease = ()=>{
     Axios.post("http://localhost:3001/insert",{
       diseasename : disease,
-    }).then(()=>{
+    }).then((data)=>{
+      // console.log(data.data[0])
+      setDiseaseData(data.data[0]);
+
       alert("successful reading")
     })
   }
