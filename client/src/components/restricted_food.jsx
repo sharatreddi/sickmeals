@@ -8,13 +8,13 @@ function Restricted_food(props){
                 <img src="assets/img/bubble.jpg" className="img-fluid" alt=""/>
               </div>
               <div className="col-md-7 order-2 order-md-1">
-                <h3>Dont's</h3>
+                <h3>Restricted food</h3>
                 <p className="fst-italic">
                   Foods that are not suggestable to consume.
                 </p>
                 <p>
                 {/* Diarrhea causes the rapid depletion of water and electrolytes from the system. Avoid milk-based, greasy, high-fiber, or very sweet foods, high sugar drinks, caffeine, alcohol. Avoid high sugar drinks, like apple juice, grape juice, and soda, which can pull water into the intestine and make the diarrhea persist. */}
-                {props.desc}
+                   {props.desc}
                 </p>
               </div>
             </div>

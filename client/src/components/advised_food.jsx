@@ -8,7 +8,7 @@ function Advised_food(props){
                 <img src="assets/img/do_eat1.jpg" className="img-fluid" alt=""/>
               </div>
               <div className="col-md-7">
-                <h3>Do's</h3>
+                <h3>Advised Food</h3>
                 <p>Foods that are suggested to eat.</p>
                 <ul>
                   <li><i className="bi bi-check"></i> 

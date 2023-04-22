@@ -3,6 +3,8 @@ import Description from "./Description";
 import Symptoms from "./Symptoms";
 import Advised_food from "./advised_food";
 import Restricted_food from "./restricted_food";
+import Dos from "./dos";
+import Donts from "./donts";
 import Axios from "axios";
 
 
@@ -141,8 +143,12 @@ useEffect(() => {
             <Symptoms desc={diseaseData.symptoms}/>
 
             <Advised_food desc={diseaseData.advised_food}/>
-    
+
+            <Dos desc={diseaseData.dos}/>
+
             <Restricted_food desc={diseaseData.restricted_food}/>
+
+            <Donts desc={diseaseData.donts}/>
             {/* <!-- Features Item --> */}
     
             
