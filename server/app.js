@@ -44,6 +44,26 @@ app.post("/insert", (req, res) => {
   });
 });
 
-app.listen(3001, () => {
-  console.log("Running on port 3001");
+app.post("/signup", (req, res) => {
+  const username = req.body.username;
+  const age = req.body.age;
+  const phone_no = req.body.phone_no;
+  const gmail = req.body.gmail;
+  const password = req.body.password;
+
+  const sql = "INSERT INTO profile (username, age, phone_no, gmail, password) VALUES (?, ?, ?, ?, ?)";
+  db.query(sql, [username, age, phone_no, gmail, password], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error inserting data into the database");
+    } else {
+      console.log(result);
+      res.send("Data inserted into the database");
+    }
+  });
+});
+
+
+app.listen(3000, () => {
+  console.log("Running on port 3000");
 });
