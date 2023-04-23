@@ -5,7 +5,7 @@
     <title>Signup</title>
   </head>
   <body>
-    <form id="signup-form" action="http://localhost:3001/signup" method="post">
+    <form id="signup-form" action="http://localhost:3000/signup" method="post">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" />
 
@@ -16,7 +16,7 @@
       <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" />
 
       <label for="email">Email:</label>
-      <input type="email" id="gmail" name="gmail" />
+      <input type="email" id="email" name="email" />
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" />
@@ -36,7 +36,7 @@
         const username = document.getElementById('username').value;
         const age = document.getElementById('age').value;
         const phone_no = document.getElementById('phone').value;
-        const gmail = document.getElementById('gmail').value;
+        const gmail = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirm-password').value;
 
@@ -45,7 +45,7 @@
           return;
         }
 
-        const response = await fetch('http://localhost:3001/signup', {
+        const response = await fetch('http://localhost:3000/signup', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

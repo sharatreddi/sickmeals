@@ -12,6 +12,7 @@ function App(){
         <Routes>
             <Route path="/" element={<Body />} />
             <Route path="/signup" element={<iframe src="/signup.html" />} />
+            <Route path="/login" element={<iframe src="/login.html" />} />
             {/* <Route path="/signup" element={<Signup />} /> */}
             {/* <Route path="/login" element={<Login />} /> */}
         </Routes>
