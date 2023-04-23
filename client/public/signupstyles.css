@@ -1,0 +1,93 @@
+/* Set global box-sizing to border-box */
+html{
+    width: 100vw;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Style the body */
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    background-color: #f0f0f0;
+  }
+  
+  /* Style the main section */
+  .main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  /* Style the form */
+  .form-signin {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    width: 100vw;
+  }
+  
+  /* Style the heading */
+  .form-signin h1 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+  }
+  
+  /* Style the form inputs */
+  .form-signin input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: #fff;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .form-signin input:focus {
+    border-color: #007bff;
+  }
+  
+  /* Style the submit button */
+  .form-signin input[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .form-signin input[type="submit"]:hover {
+    background-color: #0069d9;
+  }
+  
+  /* Responsive styles */
+  @media only screen and (max-width: 600px) {
+    .form-signin {
+      max-width: 100%;
+    }
+  }
+  

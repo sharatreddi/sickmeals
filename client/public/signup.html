@@ -2,30 +2,53 @@
 <html>
   <head>
     <meta charset="UTF-8" />
+    <link href="./signupstyles.css" rel="stylesheet">
     <title>Signup</title>
+ 
+    <style>
+        body{
+            width: 100%;
+            height: 100%;
+            background-color: aqua;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #signup-form{
+
+        }
+    </style>
+
   </head>
   <body>
+    <main class="form-signin w-100 m-auto">
     <form id="signup-form" action="http://localhost:3001/signup" method="post">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" />
+        <div  id="pawdiv">
+            <span><h1 class="h3 mb-3 fw-normal">Signup to my Puparazzi</h1></span>
+        </div>
 
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" min="3" max="80" />
+      <!-- <label for="username">Username:</label> -->
+      <input type="text" id="username" name="username" placeholder="Username" />
 
-      <label for="phone">Phone number:</label>
-      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" />
+      <!-- <label for="age">Age:</label> -->
+      <input type="number" id="age" name="age" min="3" max="80" placeholder="Age"/>
 
-      <label for="email">Email:</label>
-      <input type="email" id="gmail" name="gmail" />
+      <!-- <label for="phone">Phone number:</label> -->
+      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Phone"/>
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" />
+      <!-- <label for="email">Email:</label> -->
+      <input type="email" id="gmail" name="gmail" placeholder="Email"/>
 
-      <label for="confirm-password">Confirm Password:</label>
-      <input type="password" id="confirm-password" name="confirm-password" />
+      <!-- <label for="password">Password:</label> -->
+      <input type="password" id="password" name="password" placeholder="Password"/>
+
+      <!-- <label for="confirm-password">Confirm Password:</label> -->
+      <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"/>
 
       <input type="submit" value="Signup" />
     </form>
+    </main>
 
     <script>
       const form = document.getElementById('signup-form');
@@ -62,7 +85,7 @@
         if (response.ok) {
           alert('User created successfully');
           // Redirect to login page
-          window.location.href = '/login';
+          window.location.href = '/app';
         } else {
           console.log(response.status);
           alert('Error creating user');

@@ -2,70 +2,48 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Signup</title>
+    <title>Login</title>
   </head>
   <body>
-    <form id="signup-form" action="http://localhost:3000/signup" method="post">
+    <form id="login-form" action="http://localhost:3001/login" method="post">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" />
-
-      <label for="age">Age:</label>
-      <input type="number" id="age" name="age" min="3" max="80" />
-
-      <label for="phone">Phone number:</label>
-      <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" />
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" />
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" />
 
-      <label for="confirm-password">Confirm Password:</label>
-      <input type="password" id="confirm-password" name="confirm-password" />
-
-      <input type="submit" value="Signup" />
+      <input type="submit" value="Login" />
     </form>
 
+    <p>If you don't have an account yet, <a href="/signup">signup now</a>.</p>
+
     <script>
-      const form = document.getElementById('signup-form');
+      const form = document.getElementById('login-form');
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const username = document.getElementById('username').value;
-        const age = document.getElementById('age').value;
-        const phone_no = document.getElementById('phone').value;
-        const gmail = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        const confirmPassword = document.getElementById('confirm-password').value;
 
-        if (password !== confirmPassword) {
-          alert('Passwords do not match');
-          return;
-        }
-
-        const response = await fetch('http://localhost:3000/signup', {
+        const response = await fetch('http://localhost:3001/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             username,
-            age,
-            phone_no,
-            gmail,
             password,
           }),
         });
 
         if (response.ok) {
-          alert('User created successfully');
-          // Redirect to login page
-          window.location.href = '/login';
+          alert('Logged in successfully');
+          // Redirect to the React app
+          window.location.href = '/app';
         } else {
           console.log(response.status);
-          alert('Error creating user');
+          alert('Incorrect username or password');
         }
       });
     </script>

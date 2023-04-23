@@ -63,6 +63,26 @@ app.post("/signup", (req, res) => {
   });
 });
 
+app.post("/login", (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+
+  const sql = "SELECT * FROM profile WHERE username = ? AND password = ?";
+  db.query(sql, [username, password], (err, result) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send("Error fetching data from the database");
+    } else if (result.length === 0) {
+      res.status(401).send("Incorrect username or password");
+    } else {
+      res.send("Logged in successfully");
+      // Redirect to the React app
+      // You can replace the URL below with the URL of your React app
+      res.redirect("http://localhost:3000/");
+    }
+  });
+});
+
 
 app.listen(3001, () => {
   console.log("Running on port 3001");
