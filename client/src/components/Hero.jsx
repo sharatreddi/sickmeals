@@ -26,7 +26,7 @@ useEffect(() => {
     .catch((error) => {
       console.error(error);
     });
-}, []);
+}, [diseaseData]);
 
 
   //This is happening (tick)-------------------------
