@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import mysql from 'mysql';
+import mysql from 'mysql2/promise';
 import bcrypt from 'bcryptjs';
+// import { Buffer } from 'buffer';
 
 function Signup() {
   const [username, setUsername] = useState('');
@@ -21,28 +22,28 @@ function Signup() {
       alert('Passwords do not match');
       return;
     }
-    const connection = mysql.createConnection({
+    const connection = await mysql.createConnection({
       host: 'localhost',
       user: 'root',
       password: 'admin',
       database: 'sickmeals'
     });
 
-    connection.connect();
-
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
-    connection.query(
-      `INSERT INTO profile (username, age, phone, email, password) VALUES ('${username}','${age}','${phone}', '${mail}', '${hashedPassword}')`,
-      function (error, results) {
-        if (error) throw error;
-        alert('User created successfully');
-        navigate('/login');
-      }
-    );
-
-    connection.end();
+    try {
+      await connection.execute(
+        `INSERT INTO profile (username, age, phone, email, password) VALUES (?, ?, ?, ?, ?)`,
+        [username, age, phone, mail, hashedPassword]
+      );
+      alert('User created successfully');
+      navigate('/login');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      await connection.end();
+    }
   };
 
   const handleEmailChange = (e) => {
@@ -53,48 +54,48 @@ function Signup() {
 
   return (
     <div>
-    <form onSubmit={handleSignup}>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-      </label>
+      <form onSubmit={handleSignup}>
+        <label>
+          Username:
+          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+        </label>
 
-      <label>
-        Age:
-        <input type="number" min="3" max="80" value={age} onChange={(e) => setAge(e.target.value)} />
-      </label>
+        <label>
+          Age:
+          <input type="number" min="3" max="80" value={age} onChange={(e) => setAge(e.target.value)} />
+        </label>
 
-      <label>
-        Phone number:
-        <input type="tel" pattern="[0-9]{10}" value={phone} onChange={(e) => setPhone(e.target.value)} />
-      </label>
+        <label>
+          Phone number:
+          <input type="tel" pattern="[0-9]{10}" value={phone} onChange={(e) => setPhone(e.target.value)} />
+        </label>
 
-      <br />
+        <br />
 
-      <label>
-        Mail:
-        <input type="email" value={mail} onChange={handleEmailChange} />
-        {!isValidEmail && <span style={{ color: 'red' }}>Invalid email format</span>}
-      </label>
+        <label>
+          Mail:
+          <input type="email" value={mail} onChange={handleEmailChange} />
+          {!isValidEmail && <span style={{ color: 'red' }}>Invalid email format</span>}
+        </label>
 
-      <br />
+        <br />
 
-      <label>
-        Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </label>
+        <label>
+          Password:
+          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
 
-      <br />
+        <br />
 
-      <label>
-        Confirm Password:
-        <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
-      </label>
+        <label>
+          Confirm Password:
+          <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
+        </label>
 
-      <br />
+        <br />
 
-      <button type="submit">Signup</button>
-    </form>
+        <button type="submit">Signup</button>
+      </form>
     </div>
   );
 }

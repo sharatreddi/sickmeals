@@ -26,7 +26,7 @@ useEffect(() => {
     .catch((error) => {
       console.error(error);
     });
-}, []);
+}, [diseaseData]);
 
 
   //This is happening (tick)-------------------------
@@ -84,7 +84,7 @@ useEffect(() => {
             <div className="row gy-4">
               <div className="col-lg-6 position-relative align-self-start order-lg-last order-first">
                 <img src="assets/img/children.jpg" className="img-fluid" alt=""/>
-                <a href="https://youtu.be/p2LATm1ckk4" className="glightbox play-btn"></a>
+                <a title="nrml" href="https://youtu.be/p2LATm1ckk4" className="glightbox play-btn"></a>
               </div>
               <div className="col-lg-6 content order-last  order-lg-first">
                 <h3>About Us</h3>
