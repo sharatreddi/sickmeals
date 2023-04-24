@@ -8,32 +8,36 @@ import Donts from "./donts";
 import Axios from "axios";
 
 
-function Hero(){
+function Hero() {
 
   const [disease, setDisease] = useState("");
   const [diseaseData, setDiseaseData] = useState([]);
   //console.log(diseaseData)
-  console.log(disease); 
+  console.log(disease);
   // const [dataa] = diseaseData;
   // console.log(dataa.dis_description);
 
-useEffect(() => {
-  Axios.get("http://localhost:3001/insert")
-    .then((response) => {
-      setDiseaseData(response.data.data[0]);
-       console.log(diseaseData)
-    })
-    .catch((error) => {
-      console.error(error);
-    });
-}, [diseaseData]);
+  // useEffect(() => {
+  //   Axios.get("http://localhost:3001/insert")
+  //     .then((response) => {
+  //       setDiseaseData(response.data.data[0]);
+  //       console.log(diseaseData)
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }, [diseaseData]);
 
 
   //This is happening (tick)-------------------------
-  const submitDisease = ()=>{
-    Axios.post("http://localhost:3001/insert",{
-      diseasename : disease,
-    }).then((data)=>{
+  const submitDisease = () => {
+    if (disease === "") {
+      alert("Fill in some disease")
+      return;
+    }
+    Axios.post("http://localhost:3001/insert", {
+      diseasename: disease,
+    }).then((data) => {
       // console.log(data.data[0])
       setDiseaseData(data.data[0]);
 
@@ -43,60 +47,78 @@ useEffect(() => {
   //This is happening (tick)-------------------------
 
   // takes the input and sets it to the disease name then goes to submitDisease
-  function handleChange(event){
-    const text = event.target.value 
-    setDisease(text)
+  function handleChange(event) {
+    event.preventDefault()
+    const text = event.target.value
+    if (text !== "") {
+      setDisease(text)
+    }
   }
 
-    return (
-      <div>
-  <section id="hero" className="hero d-flex align-items-center">
-  <div className="container">
-    <div className="row gy-4 d-flex justify-content-between">
-      <div className="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
-        <h2 data-aos="fade-up">Your Friendly Food Suggestor</h2>
-       
-        <form action="#" className="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
-          <input type="text" className="form-control" placeholder="Enter your Disease" name="disease" onChange={handleChange}/>
-          <button type="submit" className="btn btn-primary" onClick={submitDisease}>Search</button>
-        </form>
+  return (
+    <div>
+      <section id="hero" className="hero d-flex align-items-center">
+        <div className="container">
+          <div className="row gy-4 d-flex justify-content-between">
+            <div className="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+              <h2 data-aos="fade-up">Your Friendly Food Suggestor</h2>
 
-      </div>
+              <form action="#" className="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                }}
+              >
+                <input type="text" className="form-control" placeholder="Enter your Disease" name="disease" onChange={handleChange} />
+                <button type="submit" className="btn btn-primary" onClick={submitDisease}>Search</button>
+              </form>
 
-      <div className="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
-        {/* <img src="assets/img/hero-img.svg" className="img-fluid mb-3 mb-lg-0" alt=""/> */}
-      </div>
+            </div>
 
-      </div>
-    </div>
-  </section>
-  <main id="main">
+            <div className="col-lg-5 order-1 order-lg-2 hero-img" data-aos="zoom-out">
+              {/* <img src="assets/img/hero-img.svg" className="img-fluid mb-3 mb-lg-0" alt=""/> */}
+            </div>
+
+          </div>
+        </div>
+      </section>
+      <main id="main">
 
         {/* <!-- ======= Featured Services Section ======= --> */}
         <section id="featured-services" className="featured-services">
-                 </section>
+        </section>
         {/* <!-- End Featured Services Section --> */}
-    
+
         {/* <!-- ======= About Us Section ======= --> */}
         <section id="about" className="about pt-0">
           <div className="container" data-aos="fade-up">
-    
+
             <div className="row gy-4">
               <div className="col-lg-6 position-relative align-self-start order-lg-last order-first">
-                <img src="assets/img/children.jpg" className="img-fluid" alt=""/>
-                <a href="https://youtu.be/p2LATm1ckk4" className="glightbox play-btn"></a>
+                {/* <img src="assets/img/children.jpg" className="img-fluid" alt="" /> */}
+                {/* <a href="https://youtu.be/p2LATm1ckk4" className="glightbox play-btn"></a> */}
+                <iframe
+                  width="636"
+                  height="424"
+                  src={`https://www.youtube.com/embed/p2LATm1ckk4`}
+                  // frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  // className="glightbox play-btn"
+                  // className="img-fluid"
+                  title="Embedded youtube"
+                />
               </div>
               <div className="col-lg-6 content order-last  order-lg-first">
                 <h3>About Us</h3>
                 <p>
-                Staying healthy requires more than just luck. By proactively maintaining good health habits, you can greatly reduce your risk of becoming ill. This includes eating a well-balanced diet, exercising regularly, getting enough sleep, and practicing good hygiene. Additionally, keeping stress levels in check and getting regular check-ups and preventive care can also play a vital role in disease prevention. By prioritizing your health, you can live a happier and healthier life.
+                  Staying healthy requires more than just luck. By proactively maintaining good health habits, you can greatly reduce your risk of becoming ill. This includes eating a well-balanced diet, exercising regularly, getting enough sleep, and practicing good hygiene. Additionally, keeping stress levels in check and getting regular check-ups and preventive care can also play a vital role in disease prevention. By prioritizing your health, you can live a happier and healthier life.
                 </p>
                 <ul>
                   <li data-aos="fade-up" data-aos-delay="100">
-                    
+
                     <div>
                       <h5>Adhere to a nutritious and well-balanced diet.</h5>
-                      
+
                     </div>
                   </li>
                   <li data-aos="fade-up" data-aos-delay="200">
@@ -112,64 +134,64 @@ useEffect(() => {
                 </ul>
               </div>
             </div>
-    
+
           </div>
         </section>
         {/* <!-- End About Us Section --> */}
-    
-       
-    
+
+
+
         {/* <!-- ======= Call To Action Section ======= --> */}
         <section id="call-to-action" className="call-to-action">
           <div className="container" data-aos="zoom-out">
-    
+
             <div className="row justify-content-center">
               <div className="col-lg-8 text-center">
                 <h3> "Let food be thy medicine and medicine be thy food."</h3>
                 <p> - Hippocrates</p>
               </div>
             </div>
-    
+
           </div>
         </section>
         {/* <!-- End Call To Action Section --> */}
-    
+
         {/* <!-- ======= Features Section ======= --> */}
         <section id="features" className="features">
           <div className="container">
-    
-            <Description desc={diseaseData.dis_description}/>
 
-            <Symptoms desc={diseaseData.symptoms}/>
+            <Description desc={diseaseData.dis_description} />
 
-            <Advised_food desc={diseaseData.advised_food}/>
+            <Symptoms desc={diseaseData.symptoms} />
 
-            <Dos desc={diseaseData.dos}/>
+            <Advised_food desc={diseaseData.advised_food} />
 
-            <Restricted_food desc={diseaseData.restricted_food}/>
+            <Dos desc={diseaseData.dos} />
 
-            <Donts desc={diseaseData.donts}/>
+            <Restricted_food desc={diseaseData.restricted_food} />
+
+            <Donts desc={diseaseData.donts} />
             {/* <!-- Features Item --> */}
-    
-            
+
+
             {/* <!-- Features Item --> */}
-    
+
           </div>
         </section>
         {/* <!-- End Features Section --> */}
-    
-        
-    
+
+
+
         {/* <!-- ======= Testimonials Section ======= --> */}
         <section id="testimonials" className="testimonials">
           <div className="container">
-    
+
             <div className="slides-1 swiper" data-aos="fade-up">
               <div className="swiper-wrapper">
-    
+
                 <div className="swiper-slide">
                   <div className="testimonial-item">
-                    <img src="assets/img/aartu.jpg" className="testimonial-img" alt=""/>
+                    <img src="assets/img/aartu.jpg" className="testimonial-img" alt="" />
                     <h3>Aarthi Komarneni</h3>
                     <h4>Ceo &amp; Founder</h4>
                     <div className="stars">
@@ -183,10 +205,10 @@ useEffect(() => {
                   </div>
                 </div>
                 {/* <!-- End testimonial item --> */}
-    
+
                 <div className="swiper-slide">
                   <div className="testimonial-item">
-                    <img src="assets/img/dp2_2.jpg" className="testimonial-img" alt=""/>
+                    <img src="assets/img/dp2_2.jpg" className="testimonial-img" alt="" />
                     <h3>Sharat Reddi</h3>
                     <h4>Designer</h4>
                     <div className="stars">
@@ -200,10 +222,10 @@ useEffect(() => {
                   </div>
                 </div>
                 {/* <!-- End testimonial item --> */}
-    
+
                 <div className="swiper-slide">
                   <div className="testimonial-item">
-                    <img src="assets/img/bubble2.jpg" className="testimonial-img" alt=""/>
+                    <img src="assets/img/bubble2.jpg" className="testimonial-img" alt="" />
                     <h3>NB Sathwik😂</h3>
                     <h4>Database Creator</h4>
                     <div className="stars">
@@ -217,30 +239,30 @@ useEffect(() => {
                   </div>
                 </div>
                 {/* <!-- End testimonial item --> */}
-    
+
               </div>
               <div className="swiper-pagination"></div>
             </div>
-    
+
           </div>
         </section>
         {/* <!-- End Testimonials Section --> */}
-    
+
         {/* <!-- ======= Frequently Asked Questions Section ======= --> */}
         <section id="faq" className="faq">
           <div className="container" data-aos="fade-up">
-    
+
             <div className="section-header">
               <span>Frequently Asked Questions</span>
               <h2>Frequently Asked Questions</h2>
-    
+
             </div>
-    
+
             <div className="row justify-content-center" data-aos="fade-up" data-aos-delay="200">
               <div className="col-lg-10">
-    
+
                 <div className="accordion accordion-flush" id="faqlist">
-    
+
                   <div className="accordion-item">
                     <h3 className="accordion-header">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-1">
@@ -250,17 +272,17 @@ useEffect(() => {
                     </h3>
                     <div id="faq-content-1" className="accordion-collapse collapse" data-bs-parent="#faqlist">
                       <div className="accordion-body">
-                      heh!!
+                        heh!!
                       </div>
                     </div>
                   </div>
                   {/* <!-- # Faq item--> */}
-    
+
                   <div className="accordion-item">
                     <h3 className="accordion-header">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-2">
                         <i className="bi bi-question-circle question-icon"></i>
-                       How?
+                        How?
                       </button>
                     </h3>
                     <div id="faq-content-2" className="accordion-collapse collapse" data-bs-parent="#faqlist">
@@ -270,7 +292,7 @@ useEffect(() => {
                     </div>
                   </div>
                   {/* <!-- # Faq item--> */}
-    
+
                   <div className="accordion-item">
                     <h3 className="accordion-header">
                       <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-content-3">
@@ -285,25 +307,25 @@ useEffect(() => {
                     </div>
                   </div>
                   {/* <!-- # Faq item--> */}
-    
+
                 </div>
-    
+
               </div>
             </div>
-    
+
           </div>
         </section>
         {/* <!-- End Frequently Asked Questions Section --> */}
-    
+
       </main>
     //   {/* <!-- End #main --> */}
 
-</div>
+    </div>
 
 
 
-)
-// <!-- End Hero Section -->
+  )
+  // <!-- End Hero Section -->
 
 }
 

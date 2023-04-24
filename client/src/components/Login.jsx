@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import mysql from 'mysql';
-import bcrypt from 'bcryptjs';
+// import bcrypt from 'bcryptjs';
 
 function Login() {
   const [username, setUsername] = useState('');
@@ -24,7 +24,8 @@ function Login() {
       async function (error, results) {
         if (error) throw error;
         if (results.length > 0) {
-          const isMatch = await bcrypt.compare(password, results[0].password);
+          // const isMatch = await bcrypt.compare(password, results[0].password);
+          const isMatch = password === results[0].password
           if (isMatch) {
             // If the entered password matches the password in the database, redirect to MyApp
             navigate('/');

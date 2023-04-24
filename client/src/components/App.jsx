@@ -2,8 +2,8 @@ import React from "react";
 import Body  from "./Body";
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 // import { Switch } from 'react-router';
-// import Signup from "./signup";
-// import Login from "./Login"
+import Signup from "./signup";
+import Login from "./Login"
 
 function App(){
     return (
@@ -14,8 +14,8 @@ function App(){
         <Route path="/signup" element={<iframe src="/signup.html" style={{ width: '1535px', height: '910px' }} />} />
 
             <Route path="/app" element={<Body />} />
-            {/* <Route path="/signup" element={<Signup />} /> */}
-            {/* <Route path="/login" element={<Login />} /> */}
+            {/* <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} /> */}
         </Routes>
         </Router>
       );

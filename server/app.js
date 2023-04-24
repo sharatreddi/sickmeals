@@ -1,23 +1,23 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
-const cors = require("cors"); 
+const cors = require("cors");
 const app = express();
 
 const db = mysql.createPool({
-  host : "localhost",
-  user : "root",
-  password : "admin",
-  database : "sickmeals", 
+  host: "localhost",
+  user: "root",
+  password: "admin",
+  database: "sickmeals",
 });
 
 app.use(cors());
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get("/get", (req, res) => {
   const disease_name = req.query.disease_name;
-  const sql = "SELECT * from diseases where name ='"+disease_name+"';"
+  const sql = "SELECT * from diseases where name ='" + disease_name + "';"
   db.query(sql, [disease_name], (err, response) => {
     if (err) {
       console.error(err);
@@ -31,15 +31,15 @@ app.get("/get", (req, res) => {
 
 app.post("/insert", (req, res) => {
   const disname = req.body.diseasename;
-  const sql = "SELECT * from diseases where name ='"+disname+"';"
+  const sql = "SELECT * from diseases where name ='" + disname + "';"
   db.query(sql, [disname], (err, result) => {
     if (err) {
       console.error(err);
       res.status(500).send("Error fetching data from the database");
     } else {
       res.send(result);
-      console.log(result);
-    //   console.log(disname);
+      // console.log(result);
+      //   console.log(disname);
     }
   });
 });
@@ -75,7 +75,7 @@ app.post("/login", (req, res) => {
     } else if (result.length === 0) {
       res.status(401).send("Incorrect username or password");
     } else {
-      res.send("Logged in successfully");
+      // res.send("Logged in successfully");
       // Redirect to the React app
       // You can replace the URL below with the URL of your React app
       res.redirect("http://localhost:3000/");
