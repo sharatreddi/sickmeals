@@ -1,9 +1,4 @@
 /* Fonts */
-html{
-  height: 100vh;
-  width: 100vw;
-}
-
 :root {
     --font-default: "Open Sans", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-primary: "Inter", sans-serif;
@@ -15,8 +10,6 @@ html{
     --color-default: #0a0d13;
     --color-primary: #0d42ff;
     --color-secondary: #0e1d34;
-    height: 100vh;
-    width: 100vw;
   }
   
   /* Smooth scroll behavior */
@@ -30,7 +23,6 @@ html{
   body {
     font-family: var(--font-default);
     color: var(--color-default);
-
   }
   
   a {

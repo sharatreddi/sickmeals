@@ -10,8 +10,9 @@ function App(){
         <Router>
 
         <Routes>
-            <Route path="/" element={<iframe src="/login.html" />} />
-            <Route path="/signup" element={<iframe style="width:1535px; height: 910px" src="/signup.html" />} />
+        <Route path="/" element={<iframe src="/login.html" style={{ width: '1535px', height: '910px' }} />} />
+        <Route path="/signup" element={<iframe src="/signup.html" style={{ width: '1535px', height: '910px' }} />} />
+
             <Route path="/app" element={<Body />} />
             {/* <Route path="/signup" element={<Signup />} /> */}
             {/* <Route path="/login" element={<Login />} /> */}
